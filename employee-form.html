@@ -1,0 +1,21 @@
+<h2>Add Employee</h2>
+
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+
+  <label>Name:</label><br>
+  <input formControlName="name"><br><br>
+
+  <label>Role:</label><br>
+  <input formControlName="role"><br><br>
+
+  <label>Department:</label><br>
+  <input formControlName="department"><br><br>
+
+  <label>Salary:</label><br>
+  <input type="number" formControlName="salary"><br><br>
+
+  <button type="submit" [disabled]="employeeForm.invalid">
+    Add Employee
+  </button>
+
+</form>
