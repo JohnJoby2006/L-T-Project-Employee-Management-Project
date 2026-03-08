@@ -4,5 +4,5 @@
   <p><strong>Name:</strong> {{ employee.name }}</p>
   <p><strong>Role:</strong> {{ employee.role }}</p>
   <p><strong>Department:</strong> {{ employee.department }}</p>
-  <p><strong>Salary:</strong> {{ employee.salary }}</p>
+  <p><strong>Salary:</strong> {{ employee.salary | currency:'INR' }}</p>
 </div>

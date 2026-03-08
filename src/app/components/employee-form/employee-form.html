@@ -2,8 +2,12 @@
 
 <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
 
-  <label>Name:</label><br>
-  <input formControlName="name"><br><br>
+  <label>Name:</label>
+<input type="text" formControlName="name">
+
+<div *ngIf="employeeForm.controls['name'].invalid && employeeForm.controls['name'].touched">
+  Name is required
+</div><br><br>
 
   <label>Role:</label><br>
   <input formControlName="role"><br><br>
@@ -11,8 +15,16 @@
   <label>Department:</label><br>
   <input formControlName="department"><br><br>
 
-  <label>Salary:</label><br>
-  <input type="number" formControlName="salary"><br><br>
+  <label>Salary:</label>
+<input type="number" formControlName="salary">
+
+<div *ngIf="employeeForm.controls['salary'].errors?.['required']">
+  Salary is required
+</div>
+
+<div *ngIf="employeeForm.controls['salary'].errors?.['min']">
+  Salary must be at least 1000
+</div><br><br>
 
   <button type="submit" [disabled]="employeeForm.invalid">
     Add Employee

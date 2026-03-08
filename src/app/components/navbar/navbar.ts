@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, MatToolbarModule],
-  templateUrl: './navbar.html',
-  styleUrls: ['./navbar.css']
+  imports: [RouterLink, MatToolbarModule],
+  templateUrl: './navbar.html'
 })
 export class NavbarComponent {}

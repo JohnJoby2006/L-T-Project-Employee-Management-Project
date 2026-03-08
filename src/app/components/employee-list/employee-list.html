@@ -1,15 +1,27 @@
 <h2>Employee List</h2>
 
-<table mat-table [dataSource]="employees" class="mat-elevation-z8">
+<button mat-raised-button color="primary" routerLink="/add-employee">
+  Add Employee
+</button>
+
+<br><br>
+<label>Filter by Department:</label>
+
+<select [(ngModel)]="selectedDepartment">
+  <option value="All">All</option>
+  <option value="IT">IT</option>
+  <option value="HR">HR</option>
+  <option value="QA">QA</option>
+</select>
+
+<br><br>
+<table mat-table [dataSource]="employees | departmentFilter:selectedDepartment" class="mat-elevation-z8">
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef>Name</th>
     <td mat-cell *matCellDef="let emp">
-      <span
-        (click)="viewEmployee(emp.id)"
-        style="cursor:pointer; color:blue"
-      >
+      <span (click)="viewEmployee(emp.id)" style="cursor:pointer; color:blue">
         {{ emp.name }}
       </span>
     </td>
@@ -30,7 +42,7 @@
   <!-- Salary Column -->
   <ng-container matColumnDef="salary">
     <th mat-header-cell *matHeaderCellDef>Salary</th>
-    <td mat-cell *matCellDef="let emp">{{ emp.salary }}</td>
+    <td mat-cell *matCellDef="let emp">{{ emp.salary | currency:'INR' }}</td>
   </ng-container>
 
   <!-- Action Column -->
@@ -44,11 +56,8 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-  <button mat-raised-button color="primary" routerLink="/add-employee">
-  Add Employee
-</button>
-<br><br>
-
+ <tr mat-row
+    *matRowDef="let row; columns: displayedColumns;"
+    [appHighlightSalary]="row.salary">
+</tr>
 </table>
